@@ -6,11 +6,9 @@ def string_alternative(input_str):
     print(input_str[::2])
 
     #Using For Loops
-    output_str= ""
-    for index in range(0,len(input_str), 2):
-        output_str += input_str[index]
+    output_str = [input_str[index] for index in range(0,len(input_str), 2)]
     
-    print(output_str)
+    print(''.join(output_str))
     
 
 def main():

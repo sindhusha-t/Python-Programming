@@ -30,7 +30,8 @@ with open(file_name, 'r') as f:
                 words_summary[word] = 1
         
         line = f.readline()
-    
+
+#Writing to a file
 with open('wordcount_output.txt', 'w') as f:
     for key, value in words_summary.items():
         f.write(key + ": " + str(value) + "\n")
