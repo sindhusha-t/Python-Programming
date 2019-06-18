@@ -23,9 +23,10 @@ plt.xlabel('GarageArea')
 plt.ylabel('SalePrice')
 plt.show()
 
+# Using box plot to identifty the outliers
 sns.boxplot(x=df['GarageArea'])
 
-# Removing the Anamolies
+# Removing the Anamolies by directly specifying the limits of the outliers
 train = df
 train['GarageArea'] = train[train['GarageArea']>200]
 train['GarageArea'] = train[train['GarageArea']<1200]
@@ -49,7 +50,9 @@ plt.ylabel('SalePrice')
 plt.show()
 
 
-# Removing the Anamolies
+# Removing the Anamolies using z-score
+# if the data is more than 3 standard deviations away then it is considered as outlier
+# if the data is less than -3 standard deviations away then it is considered as outlier
 df = pd.read_csv('train.csv', sep=',',usecols=(62,80))
 z = np.abs(stats.zscore(df))
 threshold = 3
@@ -76,7 +79,7 @@ plt.ylabel('SalePrice')
 plt.show()
 
 
-
+# Removing the anamolies using Quantile - removing less than 25% and more than 75% Qunatile
 Q1 = df.quantile(0.25)
 Q3 = df.quantile(0.75)
 IQR = Q3 - Q1

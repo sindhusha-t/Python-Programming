@@ -7,25 +7,26 @@ import seaborn as sns; sns.set(color_codes=True)
 train = pd.read_csv('winequality-red.csv')
 
 
-##Null values
+## Null values
 nulls = pd.DataFrame(train.isnull().sum().sort_values(ascending=False)[:25])
 nulls.columns = ['Null Count']
 nulls.index.name = 'Feature'
 print(nulls)
 
-##handling missing value
+## Replacing null values with mean values
 data = train.select_dtypes(include=[np.number]).interpolate().dropna()
 
 
-#Using Pearson Correlation
+#Using Pearson Correlation and ploting in the heat map
 plt.figure(figsize=(20,20))
 cor = data.corr()
 sns.heatmap(cor, annot=True, cmap=plt.cm.Reds)
 plt.show()
 
+# Printing the correlation with the target feature "quality"
 print(cor['quality'].sort_values(ascending=False)[:5],'\n')
 
-##Build a linear model
+##Build a multiple linear regression model
 y = data['quality']
 X = data[['alcohol', 'sulphates', 'citric acid']]
 
