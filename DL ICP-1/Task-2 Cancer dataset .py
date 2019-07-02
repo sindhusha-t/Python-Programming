@@ -24,3 +24,9 @@ my_first_nn_fitted = my_first_nn.fit(X_train, Y_train, epochs=100,verbose=0,
                                      initial_epoch=0)
 print(my_first_nn.summary())
 print(my_first_nn.evaluate(X_test, Y_test,verbose=0))
+
+"""
+Accuracy is increasing to a certain point when we add layers. 
+If we add more number of layers then slowly the accuracy is decreasing
+If random seed is given then -> the accuracy doesnot change as seed takes care of setting same rows for every iteration
+"""
